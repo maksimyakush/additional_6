@@ -22,12 +22,19 @@ module.exports = function zeros(expression) {
 			exp -=2;
 		}
 		return counter;
+	}	
+	var arr = [];
+	var accumulator = 1;
+	for(var i=0; i < newExpression.length; i++) {
+		while (newExpression[i] % 10 == 0) {
+			newExpression[i] = newExpression[i] / 10;
+			arr.push('x');
+		}
+		accumulator = accumulator * newExpression[i];
+		while (accumulator % 10 == 0) {
+			accumulator = accumulator / 10;
+			arr.push('x');
+		}	
 	}
-	var mul = newExpression.reduce((a,b)=>a*b);
-	var counter = 0;
-	while (mul % 10 == 0) {
-		mul = mul/10;
-		++counter;
-	}
-	return counter;
+	return arr.length;
 }
